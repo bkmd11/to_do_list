@@ -7,6 +7,8 @@ Todo: make this a cli tool that loads json data and displays my list for the wee
     And possibly sexy  colors for various things
 """
 
+import json
+
 
 # Takes input for what needs to get done
 def task_manager(assignment, due_date, dictionary):
