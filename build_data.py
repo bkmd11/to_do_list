@@ -31,7 +31,7 @@ def input_assignments():
             break
         due_date = input('When is this due?\n')
 
-        assignment_dictionary[assignments] = due_date
+        assignment_dictionary[assignments] = [due_date, False]
 
     return assignment_dictionary
 
@@ -41,7 +41,7 @@ def build():
     week = input_week()
     items_due = input_assignments()
     with open('main_list.json', 'w') as file:
-        json.dump([week, items_due], file)
+        json.dump([week, items_due], file, indent=4)
 
 
 if __name__ == '__main__':
