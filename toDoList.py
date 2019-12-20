@@ -2,10 +2,12 @@
 Using this to plan my week for classes.
 Todo:
     Error handling
-    possibly sexy  colors for various things
+    write tests
 """
 import json
 import os
+
+from colorama import init, Fore
 
 
 ########################################################################################################################
@@ -56,7 +58,7 @@ def text_display(assignment_dict):
         if due_date[1] is False:
             print(f'{count}: {assignment} \n\t- {due_date[0]}\n')
         else:
-            print(f'{count}: {assignment} - {due_date[0]}\nDONE!')
+            print(f'{count}: {assignment} \n\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}')
         count += 1
 
 ########################################################################################################################
@@ -85,11 +87,15 @@ def change_state(dict_key, assignment_dict):
 
 
 def main():
+    init()
     with open('main_list.json', 'r') as file:
         assignments = json.load(file)
-    print('TODO LIST')
+    print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
+
     while True:
-        option = input('\nOptions:\n(m) make the list,\n(e) edit the list,\n(v) view the list\n(q) quit\n')
+        option = input(
+            f'{Fore.YELLOW}\nOptions:\n(m) make the list,\n(e) edit the list,\n(v) view the list\n(q) quit\n{Fore.RESET}')
+            # todo color on the above line doesnt work on the initial print
         os.system('cls')
         if option.lower() == 'm':
             assignments = build()
@@ -106,7 +112,7 @@ def main():
             break
 
         else:
-            print('Error: Invalid option')
+            print(f'\n\n\n{Fore.RED}Error: Invalid option{Fore.RESET}')
 
     with open('main_list.json', 'w') as file:
         json.dump(assignments, file, indent=4)
