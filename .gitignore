@@ -2,3 +2,4 @@
 *.json
 gui_attempt.pyw
 toDoList
+__pycache__/

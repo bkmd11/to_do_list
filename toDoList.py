@@ -12,6 +12,7 @@ from colorama import init, Fore
 
 ########################################################################################################################
 # This portion focuses on making the list
+# TODO: could add an append feature
 ########################################################################################################################
 def input_week():
     """Takes user input for what week of the course it is"""
@@ -47,6 +48,7 @@ def build():
 
 ########################################################################################################################
 # This portion shows the list
+# TODO: Could add a feature to print off notes that I add
 ########################################################################################################################
 
 
@@ -61,8 +63,10 @@ def text_display(assignment_dict):
             print(f'{count}: {assignment} \n\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}')
         count += 1
 
+
 ########################################################################################################################
 # This portion edits the data in the json file
+# TODO: make the list index not start at 0
 ########################################################################################################################
 
 
@@ -70,10 +74,10 @@ def show_assignments(assignment_dict):
     """ Shows a list of the assignments with a reference number"""
     items = [i for i in assignment_dict[1].keys()]
     for i in items:
-        print(f'{items.index(i)}: {i}')
+        print(f'{items.index(i) + 1}: {i}')
 
     index = int(input('Enter the number of the finished assignment: '))     # Should do this somewhere else
-    return items[index]
+    return items[index - 1]
 
 
 def change_state(dict_key, assignment_dict):
@@ -91,22 +95,20 @@ def main():
     with open('main_list.json', 'r') as file:
         assignments = json.load(file)
     print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
-
     while True:
+        text_display(assignments)
         option = input(
-            f'{Fore.YELLOW}\nOptions:\n(m) make the list,\n(e) edit the list,\n(v) view the list\n(q) quit\n{Fore.RESET}')
-            # todo color on the above line doesnt work on the initial print
+            '\nOptions:\n(m) make the list\n(e) edit the list\n(q) quit\n')
         os.system('cls')
         if option.lower() == 'm':
+            print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
             assignments = build()
             os.system('cls')
 
         elif option.lower() == 'e':
+            print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
             item_to_edit = show_assignments(assignments)
             change_state(item_to_edit, assignments)
-
-        elif option.lower() == 'v':
-            text_display(assignments)
 
         elif option.lower() == 'q':
             break
