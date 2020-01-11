@@ -1,7 +1,7 @@
 """takes input and makes a .txt file.
 Using this to plan my week for classes.
 Todo:
-    Error handling
+    Error handling -- if anything is corrupt in json file, it breaks
     write tests
 """
 import json
@@ -12,7 +12,6 @@ from colorama import init, Fore
 
 ########################################################################################################################
 # This portion focuses on making the list
-# TODO: could add an append feature
 ########################################################################################################################
 def input_week():
     """Takes user input for what week of the course it is"""
@@ -44,7 +43,7 @@ def build():
     week = input_week()
     items_due = input_assignments()
 
-    return [week, items_due]
+    return week, items_due
 
 ########################################################################################################################
 # This portion shows the list
@@ -52,38 +51,48 @@ def build():
 ########################################################################################################################
 
 
-def text_display(assignment_dict):
+def text_display(assignment_dict, week_number):
     """This is the display that shows what is due this week"""
-    print(f'ASSIGNMENTS DUE FOR {assignment_dict[0]}')
+    print(f'ASSIGNMENTS DUE FOR {week_number}')
     count = 1
-    for assignment, due_date in assignment_dict[1].items():
+    for assignment, due_date in assignment_dict.items():
         if due_date[1] is False:
-            print(f'{count}: {assignment} \n\t- {due_date[0]}\n')
+            print(f'{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.RESET}')
         else:
-            print(f'{count}: {assignment} \n\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}')
+            print(f'{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}')
         count += 1
 
 
 ########################################################################################################################
 # This portion edits the data in the json file
-# TODO: make the list index not start at 0
 ########################################################################################################################
 
 
 def show_assignments(assignment_dict):
     """ Shows a list of the assignments with a reference number"""
-    items = [i for i in assignment_dict[1].keys()]
+    items = [i for i in assignment_dict.keys()]
     for i in items:
         print(f'{items.index(i) + 1}: {i}')
 
-    index = int(input('Enter the number of the finished assignment: '))     # Should do this somewhere else
+    index = int(input('Enter the number of the finished assignment: '))
     return items[index - 1]
 
 
-def change_state(dict_key, assignment_dict):
-    """ Changes the state of the assignment to True to indicate that an assignment is done"""
-    assignment_dict[1][dict_key][1] = True          # This is confusing as shit
-    print('Assignment marked as complete!')
+def change_state(due_date_bool):
+    """ Changes the state of the assignment to toggle complete and incomplete
+        False means task is not done, True means it is complete"""
+    if due_date_bool:
+        return False
+    else:
+        return True
+
+
+def append_items():
+    """Adds items to the list"""
+    assignments = input('What are you adding to the list?\n')
+    due_date = input('When is this due?\n')
+
+    return assignments, [due_date, False]
 
 ########################################################################################################################
 # The main program
@@ -93,22 +102,31 @@ def change_state(dict_key, assignment_dict):
 def main():
     init()
     with open('main_list.json', 'r') as file:
-        assignments = json.load(file)
-    print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
+        json_data = json.load(file)
+
+    week_num = json_data[0]
+    assignments = json_data[1]
+
     while True:
-        text_display(assignments)
+        os.system('cls')
+        print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
+        text_display(assignments, week_num)
         option = input(
-            '\nOptions:\n(m) make the list\n(e) edit the list\n(q) quit\n')
+            '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(q) quit\n')
         os.system('cls')
         if option.lower() == 'm':
-            print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
-            assignments = build()
-            os.system('cls')
+            week_num, assignments = build()
+
+        elif option.lower() == 'a':
+            item_to_add, date_due = append_items()
+            assignments[item_to_add] = date_due
 
         elif option.lower() == 'e':
-            print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
             item_to_edit = show_assignments(assignments)
-            change_state(item_to_edit, assignments)
+
+            # {item_to_do: [due_date, bool_indicating_status]}
+            # confusing, idk a better way
+            assignments[item_to_edit][1] = change_state(assignments[item_to_edit][1])
 
         elif option.lower() == 'q':
             break
@@ -116,8 +134,9 @@ def main():
         else:
             print(f'\n\n\n{Fore.RED}Error: Invalid option{Fore.RESET}')
 
+    json_data = [week_num, assignments]
     with open('main_list.json', 'w') as file:
-        json.dump(assignments, file, indent=4)
+        json.dump(json_data, file, indent=4)
 
 
 if __name__ == '__main__':
