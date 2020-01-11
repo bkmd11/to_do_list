@@ -28,12 +28,12 @@ def input_assignments():
     """ Takes user input to create a dictionary of tasks with their due dates as values"""
     assignment_dictionary = {}
     while True:
-        assignments = input('What assignments are due this week?\nEnter nothing to quit\n')
-        if assignments == '':
+        assignments_to_do = input('What assignments are due this week?\nEnter nothing to quit\n')
+        if assignments_to_do == '':
             break
         due_date = input('When is this due?\n')
 
-        assignment_dictionary[assignments] = [due_date, False]
+        assignment_dictionary[assignments_to_do] = [due_date, False]
 
     return assignment_dictionary
 
@@ -74,7 +74,7 @@ def show_assignments(assignment_dict):
     for i in items:
         print(f'{items.index(i) + 1}: {i}')
 
-    index = int(input('Enter the number of the finished assignment: '))
+    index = int(input('Enter the number of the assignment to update: '))
     return items[index - 1]
 
 
@@ -89,44 +89,38 @@ def change_state(due_date_bool):
 
 def append_items():
     """Adds items to the list"""
-    assignments = input('What are you adding to the list?\n')
+    assignments_to_do = input('What are you adding to the list?\n')
     due_date = input('When is this due?\n')
 
-    return assignments, [due_date, False]
+    return assignments_to_do, [due_date, False]
 
 ########################################################################################################################
 # The main program
 ########################################################################################################################
 
 
-def main():
+def main(week_number, assignments_due):
     init()
-    with open('main_list.json', 'r') as file:
-        json_data = json.load(file)
-
-    week_num = json_data[0]
-    assignments = json_data[1]
-
     while True:
         os.system('cls')
         print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
-        text_display(assignments, week_num)
+        text_display(assignments_due, week_number)
         option = input(
             '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(q) quit\n')
         os.system('cls')
         if option.lower() == 'm':
-            week_num, assignments = build()
+            week_number, assignments_due = build()
 
         elif option.lower() == 'a':
             item_to_add, date_due = append_items()
-            assignments[item_to_add] = date_due
+            assignments_due[item_to_add] = date_due
 
         elif option.lower() == 'e':
-            item_to_edit = show_assignments(assignments)
+            item_to_edit = show_assignments(assignments_due)
 
             # {item_to_do: [due_date, bool_indicating_status]}
             # confusing, idk a better way
-            assignments[item_to_edit][1] = change_state(assignments[item_to_edit][1])
+            assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
         elif option.lower() == 'q':
             break
@@ -134,10 +128,23 @@ def main():
         else:
             print(f'\n\n\n{Fore.RED}Error: Invalid option{Fore.RESET}')
 
-    json_data = [week_num, assignments]
-    with open('main_list.json', 'w') as file:
-        json.dump(json_data, file, indent=4)
+    return week_number, assignments_due
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        with open('main_list.json', 'r') as file:
+            json_data = json.load(file)
+
+        week_num = json_data[0]
+        assignments = json_data[1]
+
+    except FileNotFoundError:
+        week_num = 'WEEK --'
+        assignments = {}
+
+    week_num, assignments = main(week_num, assignments)
+
+    json_data = [week_num, assignments]
+    with open('main_list.json', 'w') as file:
+        json.dump(json_data, file, indent=4)
