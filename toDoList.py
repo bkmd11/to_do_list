@@ -14,6 +14,7 @@ from colorama import init, Fore
 # This portion focuses on making the list
 ########################################################################################################################
 def input_week():
+    # TODO: tests to see different input types
     """Takes user input for what week of the course it is"""
     week_number = input('What week is this?\n')
 
@@ -25,6 +26,7 @@ def input_week():
 
 
 def input_assignments():
+    # TODO: idk how to test in a while loop
     """ Takes user input to create a dictionary of tasks with their due dates as values"""
     assignment_dictionary = {}
     while True:
@@ -39,6 +41,7 @@ def input_assignments():
 
 
 def build():
+    # TODO: integration test to assure the right format is returned
     """ Saves the week int and assignment dict as a list in json"""
     week = input_week()
     items_due = input_assignments()
@@ -69,6 +72,7 @@ def text_display(assignment_dict, week_number):
 
 
 def show_assignments(assignment_dict):
+    # TODO: Look into testing functions that print, or rewriting to make testing easier
     """ Shows a list of the assignments with a reference number"""
     items = [i for i in assignment_dict.keys()]
     for i in items:
@@ -79,6 +83,7 @@ def show_assignments(assignment_dict):
 
 
 def change_state(due_date_bool):
+    # TODO: test that it changes boolean either way
     """ Changes the state of the assignment to toggle complete and incomplete
         False means task is not done, True means it is complete"""
     if due_date_bool:
@@ -88,6 +93,7 @@ def change_state(due_date_bool):
 
 
 def append_items():
+    # TODO: check that it can handle multiple input types
     """Adds items to the list"""
     assignments_to_do = input('What are you adding to the list?\n')
     due_date = input('When is this due?\n')
