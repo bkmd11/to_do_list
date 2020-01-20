@@ -2,7 +2,6 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
-    write tests
 """
 import json
 import os
@@ -14,7 +13,6 @@ from colorama import init, Fore
 # This portion focuses on making the list
 ########################################################################################################################
 def input_week():
-    # TODO: tests to see different input types
     """Takes user input for what week of the course it is"""
     week_number = input('What week is this?\n')
 
@@ -55,16 +53,18 @@ def build():
 
 
 def text_display(assignment_dict, week_number):
+    # TODO: write tests
     """This is the display that shows what is due this week"""
-    print(f'ASSIGNMENTS DUE FOR {week_number}')
+    todo_list = f'ASSIGNMENTS DUE FOR {week_number}'
     count = 1
     for assignment, due_date in assignment_dict.items():
         if due_date[1] is False:
-            print(f'{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.RESET}')
+            todo_list += f'\n{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.RESET}'
         else:
-            print(f'{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}')
+            todo_list += f'\n{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}'
         count += 1
 
+    return todo_list
 
 ########################################################################################################################
 # This portion edits the data in the json file
@@ -72,7 +72,6 @@ def text_display(assignment_dict, week_number):
 
 
 def show_assignments(assignment_dict):
-    # TODO: Look into testing functions that print, or rewriting to make testing easier
     """ Shows a list of the assignments with a reference number"""
     items = [i for i in assignment_dict.keys()]
     for i in items:
@@ -83,7 +82,6 @@ def show_assignments(assignment_dict):
 
 
 def change_state(due_date_bool):
-    # TODO: test that it changes boolean either way
     """ Changes the state of the assignment to toggle complete and incomplete
         False means task is not done, True means it is complete"""
     if due_date_bool:
@@ -109,8 +107,9 @@ def main(week_number, assignments_due):
     init()
     while True:
         os.system('cls')
+        to_do_list = text_display(assignments_due, week_number)
         print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
-        text_display(assignments_due, week_number)
+        print(to_do_list)
         option = input(
             '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(q) quit\n')
         os.system('cls')
