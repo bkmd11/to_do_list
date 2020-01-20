@@ -24,7 +24,6 @@ def input_week():
 
 
 def input_assignments():
-    # TODO: idk how to test in a while loop
     """ Takes user input to create a dictionary of tasks with their due dates as values"""
     assignment_dictionary = {}
     while True:
@@ -91,7 +90,6 @@ def change_state(due_date_bool):
 
 
 def append_items():
-    # TODO: check that it can handle multiple input types
     """Adds items to the list"""
     assignments_to_do = input('What are you adding to the list?\n')
     due_date = input('When is this due?\n')

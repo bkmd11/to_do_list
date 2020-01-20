@@ -50,5 +50,29 @@ class TestChangeState(unittest.TestCase):
         self.assertTrue(toDoList.change_state(False))
 
 
+class TestAppendItems(unittest.TestCase):
+    def test_append_items(self):
+        """Testing items get put in the tuple correctly, and list gets made correctly"""
+        with unittest.mock.patch('builtins.input', side_effect=['Spam', 'eggs']):
+            self.assertEqual(toDoList.append_items(), ('Spam', ['eggs', False]))
+
+    def test_append_items_handles_blanks(self):
+        """Testing empty input values"""
+        with unittest.mock.patch('builtins.input', side_effect=['Spam', '']):
+            self.assertEqual(toDoList.append_items(), ('Spam', ['', False]))
+
+
+class TestInputAssignments(unittest.TestCase):
+    def test_input_assignments_loops_once(self):
+        """Testing input_assignments makes dictionary correctly, loops through once"""
+        with unittest.mock.patch('builtins.input', side_effect=['spam', 'eggs', '']):
+            self.assertEqual(toDoList.input_assignments(), {'spam': ['eggs', False]})
+
+    def test_input_assignments_loops_multiple(self):
+        """Testing input_assignments will loop through multiple times"""
+        with unittest.mock.patch('builtins.input', side_effect=['spam', 'eggs', 'foo', 'bar', '']):
+            self.assertEqual(toDoList.input_assignments(), {'spam': ['eggs', False], 'foo': ['bar', False]})
+
+
 if __name__ == '__main__':
     unittest.main()
