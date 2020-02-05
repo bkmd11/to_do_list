@@ -135,6 +135,7 @@ def main(week_number, assignments_due):
 
 
 if __name__ == '__main__':
+    os.system('mode con cols=75 lines=50')
     try:
         with open('main_list.json', 'r') as file:
             json_data = json.load(file)

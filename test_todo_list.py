@@ -1,7 +1,6 @@
 import unittest
 import unittest.mock
 
-import io
 
 import toDoList
 
