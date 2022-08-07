@@ -120,14 +120,14 @@ def finished_week():
     count = 0
     while count != 10:
         time.sleep(1)
-        print(' ' * random.randint(0, 150), end='')
+        print(' ' * random.randint(0, 100), end='')
         print(
             f'{Style.BRIGHT}{random.choice(colors)}Another '
             f'{random.choice(colors)}Week '
             f'{random.choice(colors)}Complete! ', end=''
         )
-        print(' ' * random.randint(0, 150) + f'{random.choice(colors)} *', end='')
-        print(' ' * random.randint(0, 150) + f'{random.choice(colors)} **')
+        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} *', end='')
+        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} **')
         count += 1
 
 ########################################################################################################################
