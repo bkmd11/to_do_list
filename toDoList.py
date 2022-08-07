@@ -113,7 +113,7 @@ def check_complete(assignments_due):
 ########################################################################################################################
 
 
-def finished():
+def finished_week():
     """ Prints a fun message when I finish all assignments"""
     os.system('cls')
     colors = list(vars(Fore).values())
@@ -160,7 +160,7 @@ def main(week_number, assignments_due):
             assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
-                finished()
+                finished_week()
 
         elif option.lower() == 'q':
             break
