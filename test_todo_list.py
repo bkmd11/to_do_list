@@ -73,5 +73,15 @@ class TestInputAssignments(unittest.TestCase):
             self.assertEqual(toDoList.input_assignments(), {'spam': ['eggs', False], 'foo': ['bar', False]})
 
 
+class TestCheckComplete(unittest.TestCase):
+    def test_check_complete_true(self):
+        """Testing that the loop will return true if value true"""
+        self.assertTrue(toDoList.check_complete({'spam': ['eggs', True], 'eggs': ['spam', True]}))
+
+    def test_check_complete_false(self):
+        """Testing that the loop will break at false"""
+        self.assertFalse(toDoList.check_complete({'spam': ['eggs', False], 'eggs': ['spam', True]}))
+
+
 if __name__ == '__main__':
     unittest.main(buffer=True)

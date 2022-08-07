@@ -99,7 +99,13 @@ def append_items():
     return assignments_to_do, [due_date, False]
 
 
-def check_complete()
+def check_complete(assignments_due):
+    """Compares the boolean value of all assignments to see if they are done"""
+    for i in assignments_due.values():
+        if i[1] is False:
+            return False
+        else:
+            return True
 
 
 ########################################################################################################################
@@ -152,6 +158,9 @@ def main(week_number, assignments_due):
             # {item_to_do: [due_date, bool_indicating_status]}
             # confusing, idk a better way
             assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
+
+            if check_complete(assignments_due):
+                finished()
 
         elif option.lower() == 'q':
             break
