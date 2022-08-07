@@ -104,8 +104,8 @@ def check_complete(assignments_due):
     for i in assignments_due.values():
         if i[1] is False:
             return False
-        else:
-            return True
+
+    return True
 
 
 ########################################################################################################################

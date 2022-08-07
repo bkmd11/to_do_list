@@ -82,6 +82,10 @@ class TestCheckComplete(unittest.TestCase):
         """Testing that the loop will break at false"""
         self.assertFalse(toDoList.check_complete({'spam': ['eggs', False], 'eggs': ['spam', True]}))
 
+    def test_check_complete_false_not_first(self):
+        """Testing that it wont just return the first true"""
+        self.assertFalse(toDoList.check_complete({'spam': ['eggs', True], 'eggs': ['spam', False]}))
+
 
 if __name__ == '__main__':
     unittest.main(buffer=True)
