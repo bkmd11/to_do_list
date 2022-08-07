@@ -1,12 +1,14 @@
-"""takes input and makes a .txt file.
+"""
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
 """
 import json
 import os
+import random
+import time
 
-from colorama import init, Fore
+from colorama import init, Fore, Style
 
 
 ########################################################################################################################
@@ -96,6 +98,32 @@ def append_items():
 
     return assignments_to_do, [due_date, False]
 
+
+def check_complete()
+
+
+########################################################################################################################
+# Something fun when I finish a week
+########################################################################################################################
+
+
+def finished():
+    """ Prints a fun message when I finish all assignments"""
+    os.system('cls')
+    colors = list(vars(Fore).values())
+    count = 0
+    while count != 10:
+        time.sleep(0.5)
+        print(' ' * random.randint(0, 150), end='')
+        print(
+            f'{Style.BRIGHT}{random.choice(colors)}Another '
+            f'{random.choice(colors)}Week '
+            f'{random.choice(colors)}Down! ', end=''
+        )
+        print(' ' * random.randint(0, 150) + f'{random.choice(colors)} *', end='')
+        print(' ' * random.randint(0, 150) + f'{random.choice(colors)} **')
+        count += 1
+
 ########################################################################################################################
 # The main program
 ########################################################################################################################
@@ -135,7 +163,6 @@ def main(week_number, assignments_due):
 
 
 if __name__ == '__main__':
-    os.system('mode con cols=75 lines=50')
     try:
         with open('main_list.json', 'r') as file:
             json_data = json.load(file)
