@@ -2,6 +2,7 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
+    Refactor everything so it doesnt suck and will be easier to manage
 """
 import json
 import os
