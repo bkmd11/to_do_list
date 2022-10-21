@@ -29,9 +29,7 @@ def input_week():
 def input_assignments():
     """ Takes user input to create a dictionary of tasks with their due dates as values"""
 
-    # Todo: add error handling to reject if not a day of week
-    #       should restart whole assignment because I probably goofed
-
+    days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
     assignment_dictionary = {}
     while True:
         assignments_to_do = input('What assignments are due this week?\nEnter nothing to quit\n')
@@ -39,7 +37,10 @@ def input_assignments():
             break
         due_date = input('When is this due?\n')
 
-        assignment_dictionary[assignments_to_do] = [due_date, False]
+        if due_date.lower() in days:
+            assignment_dictionary[assignments_to_do] = [due_date, False]
+        else:
+            print('That is not a valid day, please re-input assignment')
 
     return assignment_dictionary
 
