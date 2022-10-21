@@ -2,7 +2,6 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
-    Something to celebrate finishing the final week of the class
 """
 import json
 import os
@@ -115,7 +114,7 @@ def check_complete(assignments_due):
 
 
 ########################################################################################################################
-# Something fun when I finish a week
+# Something fun when I finish a week/class
 ########################################################################################################################
 
 
@@ -124,7 +123,7 @@ def finished_week():
     os.system('cls')
     colors = list(vars(Fore).values())
     count = 0
-    while count != 10:
+    while count != 11:
         time.sleep(1)
         print(' ' * random.randint(0, 100), end='')
         print(
@@ -134,6 +133,26 @@ def finished_week():
         )
         print(' ' * random.randint(0, 100) + f'{random.choice(colors)} *', end='')
         print(' ' * random.randint(0, 100) + f'{random.choice(colors)} **')
+        count += 1
+
+
+def finished_class():
+    # Todo: add credit countdown
+    """ Prints a fun message when I finish a class"""
+    os.system('cls')
+    colors = list(vars(Fore).values())
+    count = 0
+    while count != 11:
+        time.sleep(1)
+        print(' ' * random.randint(0, 100), end='')
+        print(
+            f'{Style.BRIGHT}{random.choice(colors)}  One   '
+            f'{random.choice(colors)} Step '
+            f'{random.choice(colors)}   Closer! ', end=''
+        )
+        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} *', end='')
+        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} **')
+
         count += 1
 
 ########################################################################################################################
@@ -166,7 +185,10 @@ def main(week_number, assignments_due):
             assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
-                finished_week()
+                if week_number == 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!':
+                    finished_class()
+                else:
+                    finished_week()
 
         elif option.lower() == 'q':
             break
