@@ -2,6 +2,7 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
+    Something to celebrate finishing the final week of the class
 """
 import json
 import os
@@ -18,7 +19,7 @@ def input_week():
     """Takes user input for what week of the course it is"""
     week_number = input('What week is this?\n')
 
-    if week_number == '8':
+    if week_number == '7':
         return 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
 
     else:
@@ -27,6 +28,10 @@ def input_week():
 
 def input_assignments():
     """ Takes user input to create a dictionary of tasks with their due dates as values"""
+
+    # Todo: add error handling to reject if not a day of week
+    #       should restart whole assignment because I probably goofed
+
     assignment_dictionary = {}
     while True:
         assignments_to_do = input('What assignments are due this week?\nEnter nothing to quit\n')
