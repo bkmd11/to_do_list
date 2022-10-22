@@ -1,0 +1,1 @@
+last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'

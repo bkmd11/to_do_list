@@ -4,6 +4,7 @@ Todo:
     Error handling -- if anything is corrupt in json file, it breaks
     Refactor everything so it doesnt suck and will be easier to manage
     ListIndexOutOfRange error handling
+    Strings and ints should be in one spot to edit as needed
 """
 import json
 import os
@@ -13,6 +14,14 @@ import time
 from colorama import init, Fore, Style
 
 
+
+########################################################################################################################
+#Global variables because I suck
+########################################################################################################################
+
+
+last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
+
 ########################################################################################################################
 # This portion focuses on making the list
 ########################################################################################################################
@@ -21,7 +30,7 @@ def input_week():
     week_number = input('What week is this?\n')
 
     if week_number == '7':
-        return 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
+        return last_week_string
 
     else:
         return f'WEEK {week_number}'
@@ -120,7 +129,7 @@ def check_complete(assignments_due):
 ########################################################################################################################
 def finished(week):
     """I take a week and figure out if it is the last week, then return a function"""
-    if week == 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!':
+    if week == last_week_string:
         finished_class()
     else:
         finished_week()
