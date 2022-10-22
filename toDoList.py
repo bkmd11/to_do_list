@@ -14,17 +14,19 @@ import time
 from colorama import init, Fore, Style
 
 
-
 ########################################################################################################################
-#Global variables because I suck
+# Global variables because I suck
 ########################################################################################################################
 
 
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
+days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 ########################################################################################################################
 # This portion focuses on making the list
 ########################################################################################################################
+
+
 def input_week():
     """Takes user input for what week of the course it is"""
     week_number = input('What week is this?\n')
@@ -39,7 +41,6 @@ def input_week():
 def input_assignments():
     """ Takes user input to create a dictionary of tasks with their due dates as values"""
 
-    days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
     assignment_dictionary = {}
     while True:
         assignments_to_do = input('What assignments are due this week?\nEnter nothing to quit\n')
