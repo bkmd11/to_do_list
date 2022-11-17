@@ -2,9 +2,10 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
-    Refactor everything so it doesnt suck and will be easier to manage
     ListIndexOutOfRange error handling
     Strings and ints should be in one spot to edit as needed
+    sort by due date
+    done at top
 """
 import json
 import os
@@ -66,7 +67,6 @@ def build():
 
 ########################################################################################################################
 # This portion shows the list
-# TODO: Could add a feature to print off notes that I add
 ########################################################################################################################
 
 
@@ -114,6 +114,8 @@ def append_items():
     due_date = input('When is this due?\n')
 
     return assignments_to_do, [due_date, False]
+
+def delete_item():
 
 
 def check_complete(assignments_due):
@@ -204,9 +206,6 @@ def main(week_number, assignments_due):
             assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
-                # Todo: could make this a function to be a fag
-                print(week_number)
-                time.sleep(5)
                 finished(week_number)
 
         elif option.lower() == 'q':
