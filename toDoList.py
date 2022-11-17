@@ -22,6 +22,7 @@ from colorama import init, Fore, Style
 
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
 days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+course_length = '7'
 
 ########################################################################################################################
 # This portion focuses on making the list
@@ -32,7 +33,7 @@ def input_week():
     """Takes user input for what week of the course it is"""
     week_number = input('What week is this?\n')
 
-    if week_number == '7':
+    if week_number == course_length:
         return last_week_string
 
     else:
