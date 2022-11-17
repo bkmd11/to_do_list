@@ -115,8 +115,6 @@ def append_items():
 
     return assignments_to_do, [due_date, False]
 
-def delete_item():
-
 
 def check_complete(assignments_due):
     """Compares the boolean value of all assignments to see if they are done"""
@@ -125,6 +123,17 @@ def check_complete(assignments_due):
             return False
 
     return True
+
+
+def delete_item(assignment_dict):
+    """Deletes an item from the list to fix mistakes"""
+    items = [i for i in assignment_dict.keys()]
+    for i in items:
+        print(f'{items.index(i) + 1}: {i}')
+
+    index = int(input('Enter the number of the assignment to delete: '))
+
+    assignment_dict.pop(items[index - 1])
 
 
 ########################################################################################################################
@@ -188,7 +197,7 @@ def main(week_number, assignments_due):
         print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
         print(to_do_list)
         option = input(
-            '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(q) quit\n')
+            '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n')
         os.system('cls')
         if option.lower() == 'm':
             week_number, assignments_due = build()
@@ -207,6 +216,9 @@ def main(week_number, assignments_due):
 
             if check_complete(assignments_due):
                 finished(week_number)
+
+        elif option.lower() == 'd':
+            delete_item(assignments_due)
 
         elif option.lower() == 'q':
             break
