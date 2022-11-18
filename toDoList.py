@@ -92,12 +92,19 @@ def text_display(assignment_dict, week_number):
 
 def show_assignments(assignment_dict):
     """ Shows a list of the assignments with a reference number"""
-    items = [i for i in assignment_dict.keys()]
-    for i in items:
-        print(f'{items.index(i) + 1}: {i}')
+    while True:
+        items = [i for i in assignment_dict.keys()]
+        for i in items:
+            print(f'{items.index(i) + 1}: {i}')
 
-    index = int(input('Enter the number of the assignment to update: '))
-    return items[index - 1]
+        index = input('Enter the number of the assignment to update: ')
+
+        try:
+            return items[int(index) - 1]
+        except IndexError as e:
+            print(f'{e} please input valid number')
+        except ValueError as e:
+            print(f'{e} please input a valid number')
 
 
 def change_state(due_date_bool):
