@@ -2,10 +2,10 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
-    ListIndexOutOfRange error handling
     Strings and ints should be in one spot to edit as needed
     sort by due date
     done at top
+    Refactor into better structure with different files to manage better
 """
 import json
 import os
