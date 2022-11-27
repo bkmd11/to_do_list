@@ -3,7 +3,7 @@ Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
     Strings and ints should be in one spot to edit as needed
-    sort by due date
+    sort by due date----- Again my shitty data structure and design make this hard. Cant sort dict with list values
     done at top
     Refactor into better structure with different files to manage better
 """
@@ -95,7 +95,10 @@ def show_assignments(assignment_dict):
     while True:
         items = [i for i in assignment_dict.keys()]
         for i in items:
-            print(f'{items.index(i) + 1}: {i}')
+            if assignment_dict[i][1]:
+                print(f'{Fore.GREEN}{items.index(i) + 1}: {i}{Fore.RESET}')
+            else:
+                print(f'{Fore.RED}{items.index(i) + 1}: {i}{Fore.RESET}')
 
         index = input('Enter the number of the assignment to update: ')
 
