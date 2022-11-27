@@ -105,8 +105,10 @@ def day_index(day):
 
 def show_assignments(assignment_dict):
     """ Shows a list of the assignments with a reference number"""
+    sorted_dict = dict(sorted(assignment_dict.items(), key=day_index))
+
     while True:
-        items = [i for i in assignment_dict.keys()]
+        items = [i for i in sorted_dict.keys()]
         for i in items:
             if assignment_dict[i][1]:
                 print(f'{Fore.GREEN}{items.index(i) + 1}: {i}{Fore.RESET}')
@@ -250,7 +252,6 @@ def main(week_number, assignments_due):
             if not item_to_edit:
                 continue
             else:
-                print(item_to_edit)
                 assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
