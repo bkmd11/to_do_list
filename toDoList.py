@@ -21,7 +21,7 @@ from colorama import init, Fore, Style
 
 options = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
-days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 day_error_message = 'That is not a valid day, please re-input assignment\n'
 int_error = 'please input valid number\n'
 course_length = '7'
