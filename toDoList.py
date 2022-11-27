@@ -3,8 +3,7 @@ Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
     Strings and ints should be in one spot to edit as needed
-    sort by due date----- Again my shitty data structure and design make this hard. Cant sort dict with list values
-    done at top
+    sort by done at top
     Refactor into better structure with different files to manage better
 """
 import json
@@ -22,6 +21,7 @@ from colorama import init, Fore, Style
 
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
 days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+day_error_message = 'That is not a valid day, please re-input assignment'
 course_length = '7'
 
 ########################################################################################################################
@@ -48,12 +48,12 @@ def input_assignments():
         assignments_to_do = input('What assignments are due this week?\nEnter nothing to quit\n')
         if assignments_to_do == '':
             break
-        due_date = input('When is this due?\n')
+        due_date = input('When is this due?\n').lower()
 
-        if due_date.lower() in days:
+        if due_date in days:
             assignment_dictionary[assignments_to_do] = [due_date, False]
         else:
-            print('That is not a valid day, please re-input assignment')
+            print(day_error_message)
 
     return assignment_dictionary
 
@@ -128,10 +128,15 @@ def change_state(due_date_bool):
 
 def append_items():
     """Adds items to the list"""
-    assignments_to_do = input('What are you adding to the list?\n')
-    due_date = input('When is this due?\n')
+    while True:
+        assignments_to_do = input('What are you adding to the list?\n')
+        due_date = input('When is this due?\n').lower()
 
-    return assignments_to_do, [due_date, False]
+        if due_date in days:
+            return assignments_to_do, [due_date, False]
+
+        else:
+            print(day_error_message)
 
 
 def check_complete(assignments_due):
