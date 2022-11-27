@@ -19,10 +19,15 @@ from colorama import init, Fore, Style
 ########################################################################################################################
 
 
+options = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
 days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 day_error_message = 'That is not a valid day, please re-input assignment'
+int_error = 'please input valid number'
 course_length = '7'
+cls = 'cls'
+when_due = 'When is this due?\n'
+build_message = 'What assignments are due this week?\nEnter nothing to quit\n'
 
 ########################################################################################################################
 # This portion focuses on making the list
@@ -45,10 +50,10 @@ def input_assignments():
 
     assignment_dictionary = {}
     while True:
-        assignments_to_do = input('What assignments are due this week?\nEnter nothing to quit\n')
+        assignments_to_do = input(build_message)
         if assignments_to_do == '':
             break
-        due_date = input('When is this due?\n').lower()
+        due_date = input(when_due).lower()
 
         if due_date in days:
             assignment_dictionary[assignments_to_do] = [due_date, False]
@@ -112,9 +117,9 @@ def show_assignments(assignment_dict):
         try:
             return items[int(index) - 1]
         except IndexError as e:
-            print(f'{e} please input valid number')
+            print(f'{e} {int_error}')
         except ValueError as e:
-            print(f'{e} please input a valid number')
+            print(f'{e} {int_error}')
 
 
 def change_state(due_date_bool):
@@ -129,8 +134,10 @@ def change_state(due_date_bool):
 def append_items():
     """Adds items to the list"""
     while True:
-        assignments_to_do = input('What are you adding to the list?\n')
-        due_date = input('When is this due?\n').lower()
+        assignments_to_do = input(build_message)
+        if assignments_to_do == '':
+            break
+        due_date = input(when_due).lower()
 
         if due_date in days:
             return assignments_to_do, [due_date, False]
@@ -172,7 +179,7 @@ def finished(week):
 
 def finished_week():
     """ Prints a fun message when I finish all assignments"""
-    os.system('cls')
+    os.system(cls)
     colors = list(vars(Fore).values())
     count = 0
     while count != 11:
@@ -191,7 +198,7 @@ def finished_week():
 def finished_class():
     # Todo: add credit countdown
     """ Prints a fun message when I finish a class"""
-    os.system('cls')
+    os.system(cls)
     colors = list(vars(Fore).values())
     count = 0
     while count != 11:
@@ -219,15 +226,17 @@ def main(week_number, assignments_due):
         to_do_list = text_display(assignments_due, week_number)
         print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
         print(to_do_list)
-        option = input(
-            '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n')
+        option = input(options)
         os.system('cls')
         if option.lower() == 'm':
             week_number, assignments_due = build()
 
         elif option.lower() == 'a':
-            item_to_add, date_due = append_items()
-            assignments_due[item_to_add] = date_due
+            try:
+                item_to_add, date_due = append_items()
+                assignments_due[item_to_add] = date_due
+            except TypeError:
+                continue
 
         elif option.lower() == 'e':
             item_to_edit = show_assignments(assignments_due)
