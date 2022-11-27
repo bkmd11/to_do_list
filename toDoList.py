@@ -22,12 +22,13 @@ from colorama import init, Fore, Style
 options = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
 days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-day_error_message = 'That is not a valid day, please re-input assignment'
-int_error = 'please input valid number'
+day_error_message = 'That is not a valid day, please re-input assignment\n'
+int_error = 'please input valid number\n'
 course_length = '7'
 cls = 'cls'
 when_due = 'When is this due?\n'
 build_message = 'What assignments are due this week?\nEnter nothing to quit\n'
+update_assignments = 'Enter the number of the assignment to update, or leave blank to exit:\n '
 
 ########################################################################################################################
 # This portion focuses on making the list
@@ -112,8 +113,9 @@ def show_assignments(assignment_dict):
             else:
                 print(f'{Fore.RED}{items.index(i) + 1}: {i}{Fore.RESET}')
 
-        index = input('Enter the number of the assignment to update: ')
-
+        index = input(update_assignments)
+        if index == '':
+            break
         try:
             return items[int(index) - 1]
         except IndexError as e:
@@ -244,8 +246,12 @@ def main(week_number, assignments_due):
             # {item_to_do: [due_date, bool_indicating_status]}
             # confusing, idk a better way
             # please for the love of god find a better way
-            #todo could change to a list of dictionories...
-            assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
+            # todo could change to a list of dictionories...
+            if not item_to_edit:
+                continue
+            else:
+                print(item_to_edit)
+                assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
                 finished(week_number)
