@@ -88,7 +88,7 @@ def text_display(assignment_dict, week_number):
 
 
 def day_index(day):
-
+    """I return an index for the day list so the text display is in order"""
     index = days.index(day[1][0])
 
     return index
