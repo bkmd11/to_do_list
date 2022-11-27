@@ -21,7 +21,7 @@ from colorama import init, Fore, Style
 
 options = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
 last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
-days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 day_error_message = 'That is not a valid day, please re-input assignment\n'
 int_error = 'please input valid number\n'
 course_length = '7'
@@ -54,7 +54,7 @@ def input_assignments():
         assignments_to_do = input(build_message)
         if assignments_to_do == '':
             break
-        due_date = input(when_due).lower()
+        due_date = input(when_due).capitalize()
 
         if due_date in days:
             assignment_dictionary[assignments_to_do] = [due_date, False]
@@ -95,7 +95,7 @@ def text_display(assignment_dict, week_number):
 
 def day_index(day):
     """I return an index for the day list so the text display is in order"""
-    index = days.index(day[1][0])
+    index = days.index(day[1][0].capitalize())
 
     return index
 ########################################################################################################################
@@ -141,7 +141,7 @@ def append_items():
         assignments_to_do = input(build_message)
         if assignments_to_do == '':
             break
-        due_date = input(when_due).lower()
+        due_date = input(when_due).capitalize()
 
         if due_date in days:
             return assignments_to_do, [due_date, False]
