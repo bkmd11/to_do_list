@@ -74,9 +74,10 @@ def build():
 def text_display(assignment_dict, week_number):
     # TODO: write tests
     """This is the display that shows what is due this week"""
+    sorted_dict = dict(sorted(assignment_dict.items(), key=day_index))
     todo_list = f'ASSIGNMENTS DUE FOR {week_number}'
     count = 1
-    for assignment, due_date in assignment_dict.items():
+    for assignment, due_date in sorted_dict.items():
         if due_date[1] is False:
             todo_list += f'\n{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.RESET}'
         else:
@@ -85,6 +86,12 @@ def text_display(assignment_dict, week_number):
 
     return todo_list
 
+
+def day_index(day):
+
+    index = days.index(day[1][0])
+
+    return index
 ########################################################################################################################
 # This portion edits the data in the json file
 ########################################################################################################################
@@ -223,6 +230,7 @@ def main(week_number, assignments_due):
             # {item_to_do: [due_date, bool_indicating_status]}
             # confusing, idk a better way
             # please for the love of god find a better way
+            #todo could change to a list of dictionories...
             assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
