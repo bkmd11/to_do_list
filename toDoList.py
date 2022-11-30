@@ -2,7 +2,6 @@
 Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
-    Strings and ints should be in one spot to edit as needed
     sort by done at top
     Refactor into better structure with different files to manage better
 """
@@ -30,6 +29,11 @@ WHEN_DUE = 'When is this due?\n'
 BUILD_MESSAGE = 'What assignments are due this week?\nEnter nothing to quit\n'
 UPDATE_ASSIGNMENT = 'Enter the number of the assignment to update, or leave blank to exit:\n '
 DELETE_MESSAGE = 'Enter the number of the assignment to delete: '
+ASSIGNMENT_MESSAGE = 'ASSIGNMENTS DUE FOR'
+TITLE = 'TODO LIST'
+INPUT_MESSAGE = 'What week is this?\n'
+WEEK = 'WEEK'
+OUTPUT_FILE = 'main_list.json'
 
 ########################################################################################################################
 # This portion focuses on making the list
@@ -38,13 +42,13 @@ DELETE_MESSAGE = 'Enter the number of the assignment to delete: '
 
 def input_week():
     """Takes user input for what week of the course it is"""
-    week_number = input('What week is this?\n')
+    week_number = input(INPUT_MESSAGE)
 
     if week_number == COURSE_LENGTH:
         return LAST_WEEK_STRING
 
     else:
-        return f'WEEK {week_number}'
+        return f'{WEEK} {week_number}'
 
 
 def input_assignments():
@@ -82,7 +86,7 @@ def text_display(assignment_dict, week_number):
     # TODO: write tests
     """This is the display that shows what is due this week"""
     sorted_dict = dict(sorted(assignment_dict.items(), key=day_index))
-    todo_list = f'ASSIGNMENTS DUE FOR {week_number}'
+    todo_list = f'{ASSIGNMENT_MESSAGE} {week_number}'
     count = 1
     for assignment, due_date in sorted_dict.items():
         if due_date[1] is False:
@@ -229,7 +233,7 @@ def main(week_number, assignments_due):
     while True:
         os.system(CLS)
         to_do_list = text_display(assignments_due, week_number)
-        print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
+        print(f'{Fore.CYAN}{TITLE}{Fore.RESET}')
         print(to_do_list)
         option = input(OPTIONS)
         os.system(CLS)
@@ -272,7 +276,7 @@ def main(week_number, assignments_due):
 
 if __name__ == '__main__':
     try:
-        with open('main_list.json', 'r') as file:
+        with open(OUTPUT_FILE, 'r') as file:
             json_data = json.load(file)
 
         week_num = json_data[0]
@@ -285,5 +289,5 @@ if __name__ == '__main__':
     week_num, assignments = main(week_num, assignments)
 
     json_data = [week_num, assignments]
-    with open('main_list.json', 'w') as file:
+    with open(OUTPUT_FILE, 'w') as file:
         json.dump(json_data, file, indent=4)
