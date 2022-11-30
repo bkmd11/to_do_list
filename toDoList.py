@@ -19,16 +19,17 @@ from colorama import init, Fore, Style
 ########################################################################################################################
 
 
-options = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
-last_week_string = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-day_error_message = 'That is not a valid day, please re-input assignment\n'
-int_error = 'please input valid number\n'
-course_length = '7'
-cls = 'cls'
-when_due = 'When is this due?\n'
-build_message = 'What assignments are due this week?\nEnter nothing to quit\n'
-update_assignments = 'Enter the number of the assignment to update, or leave blank to exit:\n '
+OPTIONS = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
+LAST_WEEK_STRING = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
+DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+DAY_ERROR_MESSAGE = 'That is not a valid day, please re-input assignment\n'
+INT_ERROR = 'please input valid number\n'
+COURSE_LENGTH = '7'
+CLS = 'cls'
+WHEN_DUE = 'When is this due?\n'
+BUILD_MESSAGE = 'What assignments are due this week?\nEnter nothing to quit\n'
+UPDATE_ASSIGNMENT = 'Enter the number of the assignment to update, or leave blank to exit:\n '
+DELETE_MESSAGE = 'Enter the number of the assignment to delete: '
 
 ########################################################################################################################
 # This portion focuses on making the list
@@ -39,8 +40,8 @@ def input_week():
     """Takes user input for what week of the course it is"""
     week_number = input('What week is this?\n')
 
-    if week_number == course_length:
-        return last_week_string
+    if week_number == COURSE_LENGTH:
+        return LAST_WEEK_STRING
 
     else:
         return f'WEEK {week_number}'
@@ -51,15 +52,15 @@ def input_assignments():
 
     assignment_dictionary = {}
     while True:
-        assignments_to_do = input(build_message)
+        assignments_to_do = input(BUILD_MESSAGE)
         if assignments_to_do == '':
             break
-        due_date = input(when_due).capitalize()
+        due_date = input(WHEN_DUE).capitalize()
 
-        if due_date in days:
+        if due_date in DAYS:
             assignment_dictionary[assignments_to_do] = [due_date, False]
         else:
-            print(day_error_message)
+            print(DAY_ERROR_MESSAGE)
 
     return assignment_dictionary
 
@@ -95,7 +96,7 @@ def text_display(assignment_dict, week_number):
 
 def day_index(day):
     """I return an index for the day list so the text display is in order"""
-    index = days.index(day[1][0].capitalize())
+    index = DAYS.index(day[1][0].capitalize())
 
     return index
 ########################################################################################################################
@@ -115,15 +116,15 @@ def show_assignments(assignment_dict):
             else:
                 print(f'{Fore.RED}{items.index(i) + 1}: {i}{Fore.RESET}')
 
-        index = input(update_assignments)
+        index = input(UPDATE_ASSIGNMENT)
         if index == '':
             break
         try:
             return items[int(index) - 1]
         except IndexError as e:
-            print(f'{e} {int_error}')
+            print(f'{e} {INT_ERROR}')
         except ValueError as e:
-            print(f'{e} {int_error}')
+            print(f'{e} {INT_ERROR}')
 
 
 def change_state(due_date_bool):
@@ -138,16 +139,16 @@ def change_state(due_date_bool):
 def append_items():
     """Adds items to the list"""
     while True:
-        assignments_to_do = input(build_message)
+        assignments_to_do = input(BUILD_MESSAGE)
         if assignments_to_do == '':
             break
-        due_date = input(when_due).capitalize()
+        due_date = input(WHEN_DUE).capitalize()
 
-        if due_date in days:
+        if due_date in DAYS:
             return assignments_to_do, [due_date, False]
 
         else:
-            print(day_error_message)
+            print(DAY_ERROR_MESSAGE)
 
 
 def check_complete(assignments_due):
@@ -165,7 +166,7 @@ def delete_item(assignment_dict):
     for i in items:
         print(f'{items.index(i) + 1}: {i}')
 
-    index = int(input('Enter the number of the assignment to delete: '))
+    index = int(input(DELETE_MESSAGE))
 
     assignment_dict.pop(items[index - 1])
 
@@ -175,7 +176,7 @@ def delete_item(assignment_dict):
 ########################################################################################################################
 def finished(week):
     """I take a week and figure out if it is the last week, then return a function"""
-    if week == last_week_string:
+    if week == LAST_WEEK_STRING:
         finished_class()
     else:
         finished_week()
@@ -183,7 +184,7 @@ def finished(week):
 
 def finished_week():
     """ Prints a fun message when I finish all assignments"""
-    os.system(cls)
+    os.system(CLS)
     colors = list(vars(Fore).values())
     count = 0
     while count != 11:
@@ -202,7 +203,7 @@ def finished_week():
 def finished_class():
     # Todo: add credit countdown
     """ Prints a fun message when I finish a class"""
-    os.system(cls)
+    os.system(CLS)
     colors = list(vars(Fore).values())
     count = 0
     while count != 11:
@@ -226,12 +227,12 @@ def finished_class():
 def main(week_number, assignments_due):
     init()
     while True:
-        os.system('cls')
+        os.system(CLS)
         to_do_list = text_display(assignments_due, week_number)
         print(f'{Fore.CYAN}TODO LIST{Fore.RESET}')
         print(to_do_list)
-        option = input(options)
-        os.system('cls')
+        option = input(OPTIONS)
+        os.system(CLS)
         if option.lower() == 'm':
             week_number, assignments_due = build()
 
