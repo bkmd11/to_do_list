@@ -7,12 +7,11 @@ Todo:
 """
 import json
 import os
-import random
-import time
 
-from colorama import init, Fore, Style
+from colorama import init, Fore
 
 import strings
+import celebrate
 
 
 ########################################################################################################################
@@ -154,54 +153,6 @@ def delete_item(assignment_dict):
 
 
 ########################################################################################################################
-# Something fun when I finish a week/class
-########################################################################################################################
-def finished(week):
-    """I take a week and figure out if it is the last week, then return a function"""
-    if week == strings.LAST_WEEK_STRING:
-        finished_class()
-    else:
-        finished_week()
-
-
-def finished_week():
-    """ Prints a fun message when I finish all assignments"""
-    os.system(strings.CLS)
-    colors = list(vars(Fore).values())
-    count = 0
-    while count != 11:
-        time.sleep(1)
-        print(' ' * random.randint(0, 100), end='')
-        print(
-            f'{Style.BRIGHT}{random.choice(colors)}Another '
-            f'{random.choice(colors)}Week '
-            f'{random.choice(colors)}Complete! ', end=''
-        )
-        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} *', end='')
-        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} **')
-        count += 1
-
-
-def finished_class():
-    # Todo: add credit countdown
-    """ Prints a fun message when I finish a class"""
-    os.system(strings.CLS)
-    colors = list(vars(Fore).values())
-    count = 0
-    while count != 11:
-        time.sleep(1)
-        print(' ' * random.randint(0, 100), end='')
-        print(
-            f'{Style.BRIGHT}{random.choice(colors)}  One   '
-            f'{random.choice(colors)} Step '
-            f'{random.choice(colors)}   Closer! ', end=''
-        )
-        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} *', end='')
-        print(' ' * random.randint(0, 100) + f'{random.choice(colors)} **')
-
-        count += 1
-
-########################################################################################################################
 # The main program
 ########################################################################################################################
 
@@ -237,7 +188,7 @@ def main(week_number, assignments_due):
                 assignments_due[item_to_edit][1] = change_state(assignments_due[item_to_edit][1])
 
             if check_complete(assignments_due):
-                finished(week_number)
+                celebrate.finished(week_number)
 
         elif option.lower() == 'd':
             delete_item(assignments_due)
