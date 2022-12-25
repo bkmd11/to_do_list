@@ -1,4 +1,4 @@
-
+"""I am the global strings"""
 
 OPTIONS = '\nOptions:\n(m) make new list\n(a) add an item\n(e) edit the list\n(d) delete item\n(q) quit\n'
 LAST_WEEK_STRING = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'

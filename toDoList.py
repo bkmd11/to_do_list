@@ -12,74 +12,10 @@ from colorama import init, Fore
 
 import strings
 import celebrate
+import initial_build
+import show_list
 
 
-########################################################################################################################
-# This portion focuses on making the list
-########################################################################################################################
-
-
-def input_week():
-    """Takes user input for what week of the course it is"""
-    week_number = input(strings.INPUT_MESSAGE)
-
-    if week_number == strings.COURSE_LENGTH:
-        return strings.LAST_WEEK_STRING
-
-    else:
-        return f'{strings.WEEK} {week_number}'
-
-
-def input_assignments():
-    """ Takes user input to create a dictionary of tasks with their due dates as values"""
-
-    assignment_dictionary = {}
-    while True:
-        assignments_to_do = input(strings.BUILD_MESSAGE)
-        if assignments_to_do == '':
-            break
-        due_date = input(strings.WHEN_DUE).capitalize()
-
-        if due_date in strings.DAYS:
-            assignment_dictionary[assignments_to_do] = [due_date, False]
-        else:
-            print(strings.DAY_ERROR_MESSAGE)
-
-    return assignment_dictionary
-
-
-def build():
-    """ Saves the week int and assignment dict as a list in json"""
-    week = input_week()
-    items_due = input_assignments()
-
-    return week, items_due
-
-########################################################################################################################
-# This portion shows the list
-########################################################################################################################
-
-
-def text_display(assignment_dict, week_number):
-    """This is the display that shows what is due this week"""
-    sorted_dict = dict(sorted(assignment_dict.items(), key=day_index))
-    todo_list = f'{strings.ASSIGNMENT_MESSAGE} {week_number}'
-    count = 1
-    for assignment, due_date in sorted_dict.items():
-        if due_date[1] is False:
-            todo_list += f'\n{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.RESET}'
-        else:
-            todo_list += f'\n{count}: {assignment} \n{Fore.RED}\t- {due_date[0]}\n{Fore.GREEN}DONE!{Fore.RESET}'
-        count += 1
-
-    return todo_list
-
-
-def day_index(day):
-    """I return an index for the day list so the text display is in order"""
-    index = strings.DAYS.index(day[1][0].capitalize())
-
-    return index
 ########################################################################################################################
 # This portion edits the data in the json file
 ########################################################################################################################
@@ -87,7 +23,7 @@ def day_index(day):
 
 def show_assignments(assignment_dict):
     """ Shows a list of the assignments with a reference number"""
-    sorted_dict = dict(sorted(assignment_dict.items(), key=day_index))
+    sorted_dict = dict(sorted(assignment_dict.items(), key=show_list.day_index))
 
     while True:
         items = [i for i in sorted_dict.keys()]
@@ -161,13 +97,13 @@ def main(week_number, assignments_due):
     init()
     while True:
         os.system(strings.CLS)
-        to_do_list = text_display(assignments_due, week_number)
+        to_do_list = show_list.text_display(assignments_due, week_number)
         print(f'{Fore.CYAN}{strings.TITLE}{Fore.RESET}')
         print(to_do_list)
         option = input(strings.OPTIONS)
         os.system(strings.CLS)
         if option.lower() == 'm':
-            week_number, assignments_due = build()
+            week_number, assignments_due = initial_build.build()
 
         elif option.lower() == 'a':
             try:
