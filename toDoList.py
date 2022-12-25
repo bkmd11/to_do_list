@@ -70,7 +70,6 @@ def input_assignments():
 
 
 def build():
-    # TODO: integration test to assure the right format is returned
     """ Saves the week int and assignment dict as a list in json"""
     week = input_week()
     items_due = input_assignments()
@@ -83,7 +82,6 @@ def build():
 
 
 def text_display(assignment_dict, week_number):
-    # TODO: write tests
     """This is the display that shows what is due this week"""
     sorted_dict = dict(sorted(assignment_dict.items(), key=day_index))
     todo_list = f'{ASSIGNMENT_MESSAGE} {week_number}'
@@ -253,7 +251,6 @@ def main(week_number, assignments_due):
             # {item_to_do: [due_date, bool_indicating_status]}
             # confusing, idk a better way
             # please for the love of god find a better way
-            # todo could change to a list of dictionories...
             if not item_to_edit:
                 continue
             else:
