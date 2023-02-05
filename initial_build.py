@@ -19,7 +19,7 @@ def input_assignments():
 
     assignment_dictionary = {}
     while True:
-        assignments_to_do = input(strings.BUILD_MESSAGE)
+        assignments_to_do = input(strings.BUILD_MESSAGE).capitalize()
         if assignments_to_do == '':
             break
         due_date = input(strings.WHEN_DUE).capitalize()
