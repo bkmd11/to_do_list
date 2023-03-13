@@ -16,6 +16,7 @@ import strings
 import celebrate
 import initial_build
 import show_list
+import launch_browser
 
 
 ########################################################################################################################
@@ -58,6 +59,9 @@ def main(week_number, assignments_due):
 
         elif option.lower() == 'd':
             data_management.delete_item(assignments_due)
+
+        elif option.lower() == 'l':
+            launch_browser.start_class()
 
         elif option.lower() == 'q':
             break
