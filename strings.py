@@ -12,7 +12,7 @@ OPTIONS = '''Options:
     (d) delete item
     (l) launch browser
     (q) quit
-            '''
+    '''
 
 # Constants
 COURSE_LENGTH = '7'
