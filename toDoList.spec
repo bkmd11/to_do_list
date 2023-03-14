@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['toDoList.py'],
+a = Analysis(['toDOList.py'],
              pathex=['C:\\Users\\Brian Kendall\\Desktop\\toDoList'],
              binaries=[],
              datas=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='toDoList',
+          name='toDOList',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
