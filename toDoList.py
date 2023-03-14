@@ -10,12 +10,7 @@ import os
 
 from colorama import init, Fore
 
-import data_management
-import strings
-import celebrate
-import initial_build
-import show_list
-import launch_browser
+from toDoList import data_management, strings, celebrate, initial_build, show_list, launch_browser
 
 
 ########################################################################################################################

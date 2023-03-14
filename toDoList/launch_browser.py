@@ -1,6 +1,6 @@
 import webbrowser
 
-import strings
+from toDoList import strings
 """ I simply launch a browser with the desired tabs open"""
 
 

@@ -4,7 +4,7 @@ import random
 
 from colorama import Fore, Style
 
-import strings
+from toDoList import strings
 
 
 """I am a 'fun' message that will play once a week is complete"""

@@ -30,7 +30,7 @@ DELETE_MESSAGE = 'Enter the number of the assignment to delete: '
 INPUT_MESSAGE = 'What week is this?\n'
 
 # Output file
-OUTPUT_FILE = 'main_list.json'
+OUTPUT_FILE = '../main_list.json'
 
 # OS function
 CLS = 'cls'

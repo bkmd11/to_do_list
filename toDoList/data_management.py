@@ -1,7 +1,7 @@
 from colorama import Fore
 
-import strings
-import show_list
+from toDoList import strings
+from toDoList import show_list
 
 """I manipulate data from the fucked up list"""
 

@@ -1,6 +1,6 @@
 from colorama import Fore
 
-import strings
+from toDoList import strings
 
 
 """I am what builds out the strings to show text on the list"""
