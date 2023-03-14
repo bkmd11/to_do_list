@@ -4,7 +4,6 @@ Todo:
     Error handling -- if anything is corrupt in json file, it breaks
     sort by done at top -- this will require a change in data structure
     could modulate more with main.py and a sub directory
-    add launch web browser feature
 """
 import json
 import os

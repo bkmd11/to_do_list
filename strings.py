@@ -1,6 +1,10 @@
 """I am the global strings"""
-# TODO organize these
 
+# Main menu screen
+TITLE = 'TODO LIST'
+LAST_WEEK_STRING = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
+ASSIGNMENT_MESSAGE = 'ASSIGNMENTS DUE FOR'
+WEEK = 'WEEK'
 OPTIONS = '''\nOptions:
             \n(m) make new list
             \n(a) add an item
@@ -9,22 +13,29 @@ OPTIONS = '''\nOptions:
             \n(l) launch browser
             \n(q) quit
             \n'''
-LAST_WEEK_STRING = 'THE LAST FUCKING WEEK OF THIS SHITTY SHIT!!!'
+
+# Constants
+COURSE_LENGTH = '7'
 DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+# Error messages
 DAY_ERROR_MESSAGE = 'That is not a valid day, please re-input assignment\n'
 INT_ERROR = 'please input valid number\n'
-COURSE_LENGTH = '7'
-CLS = 'cls'
+
+# Input options
 WHEN_DUE = 'When is this due?\n'
 BUILD_MESSAGE = 'What assignments are due this week?\nEnter nothing to quit\n'
 UPDATE_ASSIGNMENT = 'Enter the number of the assignment to update, or leave blank to exit:\n'
 DELETE_MESSAGE = 'Enter the number of the assignment to delete: '
-ASSIGNMENT_MESSAGE = 'ASSIGNMENTS DUE FOR'
-TITLE = 'TODO LIST'
 INPUT_MESSAGE = 'What week is this?\n'
-WEEK = 'WEEK'
+
+# Output file
 OUTPUT_FILE = 'main_list.json'
 
+# OS function
+CLS = 'cls'
+
+# URLS
 DASHBOARD = 'https://champlain.instructure.com/'
 GMAIL = 'https://mail.google.com/mail/u/0/#inbox'
 DRIVE = 'https://drive.google.com/drive/my-drive'
