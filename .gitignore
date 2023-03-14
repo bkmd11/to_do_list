@@ -1,5 +1,5 @@
 .idea
 *.json
 gui_attempt.pyw
-toDoList
+venv
 __pycache__/
