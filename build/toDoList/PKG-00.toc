@@ -1,4 +1,4 @@
-('C:\\Users\\Brian Kendall\\Desktop\\toDoList\\build\\toDOList\\PKG-00.pkg',
+('C:\\Users\\Brian Kendall\\Desktop\\toDoList\\build\\toDoList\\PKG-00.pkg',
  {'BINARY': 1,
   'DATA': 1,
   'EXECUTABLE': 1,
@@ -7,7 +7,7 @@
   'PYSOURCE': 1,
   'PYZ': 0},
  [('PYZ-00.pyz',
-   'C:\\Users\\Brian Kendall\\Desktop\\toDoList\\build\\toDOList\\PYZ-00.pyz',
+   'C:\\Users\\Brian Kendall\\Desktop\\toDoList\\build\\toDoList\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
    'c:\\users\\brian '
@@ -29,16 +29,16 @@
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
    'PYSOURCE'),
-  ('toDOList',
-   'C:\\Users\\Brian Kendall\\Desktop\\toDoList\\toDOList.py',
+  ('toDoList',
+   'C:\\Users\\Brian Kendall\\Desktop\\toDoList\\toDoList.py',
    'PYSOURCE'),
-  ('VCRUNTIME140.dll',
-   'c:\\users\\brian '
-   'kendall\\appdata\\local\\programs\\python\\python37-32\\VCRUNTIME140.dll',
-   'BINARY'),
   ('python37.dll',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\python37.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'c:\\users\\brian '
+   'kendall\\appdata\\local\\programs\\python\\python37-32\\VCRUNTIME140.dll',
    'BINARY'),
   ('_ssl',
    'c:\\users\\brian '
@@ -56,6 +56,10 @@
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_hashlib.pyd',
    'EXTENSION'),
+  ('select',
+   'c:\\users\\brian '
+   'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\select.pyd',
+   'EXTENSION'),
   ('_bz2',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
@@ -67,10 +71,6 @@
   ('_socket',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_socket.pyd',
-   'EXTENSION'),
-  ('select',
-   'c:\\users\\brian '
-   'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\select.pyd',
    'EXTENSION'),
   ('_ctypes',
    'c:\\users\\brian '
@@ -86,13 +86,13 @@
    'BINARY'),
   ('base_library.zip',
    'C:\\Users\\Brian '
-   'Kendall\\Desktop\\toDoList\\build\\toDOList\\base_library.zip',
+   'Kendall\\Desktop\\toDoList\\build\\toDoList\\base_library.zip',
    'DATA'),
-  ('toDOList.exe.manifest',
+  ('toDoList.exe.manifest',
    'C:\\Users\\Brian '
-   'Kendall\\Desktop\\toDoList\\build\\toDOList\\toDOList.exe.manifest',
+   'Kendall\\Desktop\\toDoList\\build\\toDoList\\toDoList.exe.manifest',
    'BINARY'),
-  ('pyi-windows-manifest-filename toDOList.exe.manifest', '', 'OPTION')],
+  ('pyi-windows-manifest-filename toDoList.exe.manifest', '', 'OPTION')],
  False,
  False,
  False)
