@@ -79,13 +79,13 @@
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_ctypes.pyd',
    'EXTENSION'),
-  ('libssl-1_1.dll',
-   'c:\\users\\brian '
-   'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libssl-1_1.dll',
-   'BINARY'),
   ('libcrypto-1_1.dll',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('libssl-1_1.dll',
+   'c:\\users\\brian '
+   'kendall\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libssl-1_1.dll',
    'BINARY'),
   ('base_library.zip',
    'C:\\Users\\Brian '
@@ -99,7 +99,7 @@
  [],
  False,
  False,
- 1680700033,
+ 1681739600,
  [('run.exe',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\run.exe',

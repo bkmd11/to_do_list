@@ -1,5 +1,9 @@
 ('C:\\Users\\Brian Kendall\\Desktop\\toDoList\\build\\toDoList\\PYZ-00.pyz',
- [('ntpath',
+ [('_py_abc',
+   'c:\\users\\brian '
+   'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('ntpath',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\ntpath.py',
    'PYMODULE'),
@@ -11,13 +15,13 @@
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\datetime.py',
    'PYMODULE'),
+  ('typing',
+   'c:\\users\\brian '
+   'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
+   'PYMODULE'),
   ('tracemalloc',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\tracemalloc.py',
-   'PYMODULE'),
-  ('_py_abc',
-   'c:\\users\\brian '
-   'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\_py_abc.py',
    'PYMODULE'),
   ('stringprep',
    'c:\\users\\brian '
@@ -451,6 +455,10 @@
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\pprint.py',
    'PYMODULE'),
+  ('contextlib',
+   'c:\\users\\brian '
+   'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\contextlib.py',
+   'PYMODULE'),
   ('unittest.case',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\unittest\\case.py',
@@ -522,14 +530,6 @@
   ('doctest',
    'c:\\users\\brian '
    'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\doctest.py',
-   'PYMODULE'),
-  ('contextlib',
-   'c:\\users\\brian '
-   'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\contextlib.py',
-   'PYMODULE'),
-  ('typing',
-   'c:\\users\\brian '
-   'kendall\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
    'PYMODULE'),
   ('tools.launch_browser',
    'C:\\Users\\Brian Kendall\\Desktop\\toDoList\\tools\\launch_browser.py',
