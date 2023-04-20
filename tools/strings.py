@@ -11,6 +11,7 @@ OPTIONS = '''Options:
     (e) edit the list
     (d) delete item
     (l) launch browser
+    (p) copy password to clipboard
     (q) quit
     '''
 

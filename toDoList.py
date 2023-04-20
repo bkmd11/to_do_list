@@ -3,14 +3,14 @@ Using this to plan my week for classes.
 Todo:
     Error handling -- if anything is corrupt in json file, it breaks
     sort by done at top -- this will require a change in data structure
-    could modulate more with main.py and a sub directory
+    add password feature
 """
 import json
 import os
 
 from colorama import init, Fore
 
-from tools import data_management, strings, celebrate, initial_build, show_list, launch_browser
+from tools import data_management, strings, celebrate, initial_build, show_list, launch_browser, login
 
 
 ########################################################################################################################
@@ -56,6 +56,9 @@ def main(week_number, assignments_due):
 
         elif option.lower() == 'l':
             launch_browser.start_class()
+
+        elif option.lower() == 'p':
+            login.clipboard()
 
         elif option.lower() == 'q':
             break
