@@ -6,6 +6,6 @@ from tools import passwords
 
 
 def clipboard():
-    pyperclip.copy(passwords.password)
+    pyperclip.copy(passwords.PASSWORD)
     print('Password copied!')
     time.sleep(1)
